@@ -149,9 +149,9 @@ export default function FlightDashboardPage() {
               src="/icon.svg"
               width={42}
               height={42}
-              alt="FlightStats logo"
+              alt="Flights logo"
             />{" "}
-            FlightStats Dashboard
+            Flights Dashboard
           </h1>
         </div>
 

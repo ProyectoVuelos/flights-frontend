@@ -4,7 +4,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "FlightStats Dashboard",
+  title: "Flights Dashboard",
   description: "Real-time flight statistics and tracking",
 };
 
