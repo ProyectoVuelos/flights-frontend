@@ -3,7 +3,7 @@
 [![Build Status](https://img.shields.io/travis/com/your-username/flights-frontend.svg?style=flat-square)](https://travis-ci.com/your-username/flights-frontend)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
-A modern web application for searching, viewing, and booking flights. This project provides the user interface for the Flights platform, connecting to backend services to deliver real-time flight information.
+A modern web application to get improved calculations of the CO2 and fuel used in real flights. This project provides the user interface for the Flights platform, connecting to backend services to deliver real-time flight information.
 
 ## ✨ Features
 
