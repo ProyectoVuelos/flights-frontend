@@ -203,10 +203,10 @@ export function FlightCard({ flight }: { flight: Flight }) {
             <div className="flex items-center justify-between w-full space-x-2">
               <div className="flex flex-col items-start text-left w-1/3 truncate">
                 <span className="font-bold text-lg text-primary truncate">
-                  {flight.flight ?? "Unknown Flight"}
+                  {flight.flight ?? "Unknown"}
                 </span>
                 <span className="text-sm text-muted-foreground truncate">
-                  {flight.aircraft_model ?? "Unknown Model"}
+                  {flight.aircraft_model ?? "Unknown"}
                 </span>
               </div>
               <div className="flex flex-col items-center">
