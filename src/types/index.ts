@@ -1,0 +1,30 @@
+export interface Flight {
+  fr24_id: string;
+  flight?: string;
+  callsign?: string;
+  aircraft_model?: string;
+  aircraft_reg?: string;
+  departure?: string;
+  arrival?: string;
+  distance_km?: number;
+  circle_distance?: number;
+  duration_takeoff_s?: number;
+  duration_climb_s?: number;
+  duration_cruise_s?: number;
+  duration_descent_s?: number;
+  duration_landing_s?: number;
+  fuel_takeoff_kg?: number;
+  fuel_climb_kg?: number;
+  fuel_cruise_kg?: number;
+  fuel_descent_kg?: number;
+  fuel_landing_kg?: number;
+  co2_takeoff_kg?: number;
+  co2_climb_kg?: number;
+  co2_cruise_kg?: number;
+  co2_descent_kg?: number;
+  co2_landing_kg?: number;
+  co2_total_kg?: number;
+  co2_per_passenger_kg?: number;
+  flight_id?: number;
+  created_at: string;
+}
