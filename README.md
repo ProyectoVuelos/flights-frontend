@@ -7,20 +7,20 @@ A modern web application to get improved calculations of the CO2 and fuel used i
 
 ## ✨ Features
 
-*   **Flight Search:** Search for one-way or round-trip flights between any two destinations.
-*   **Filtering & Sorting:** Filter results by airport, aircraft model & date.
-*   **Flight Details:** View detailed information for each flight, including layovers and amenities.
-*   **Responsive Design:** A clean and intuitive interface that works seamlessly on desktop and mobile devices.
+- **Flight Search:** Search for one-way or round-trip flights between any two destinations.
+- **Filtering & Sorting:** Filter results by airport, aircraft model & date.
+- **Flight Details:** View detailed information for each flight, including layovers and amenities.
+- **Responsive Design:** A clean and intuitive interface that works seamlessly on desktop and mobile devices.
 
 ## 🚀 Tech Stack
 
 This project is built with a modern frontend stack:
 
-*   **Framework:** [Next.js](https://nextjs.org/) with [React](https://reactjs.org/)
-*   **Language:** [TypeScript](https://www.typescriptlang.org/) 
-*   **Backend Integration:** REST API
-*   **Styling:** Tailwind CSS
-*   **UI Components:** [Radix UI](https://www.radix-ui.com/)
+- **Framework:** [Next.js](https://nextjs.org/) with [React](https://reactjs.org/)
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **Backend Integration:** REST API
+- **Styling:** Tailwind CSS
+- **UI Components:** [Radix UI](https://www.radix-ui.com/)
 
 ## 🏁 Getting Started
 
@@ -30,12 +30,13 @@ Follow these instructions to get a copy of the project up and running on your lo
 
 You need to have the following software installed on your machine:
 
-*   [Node.js](https://nodejs.org/en/) (v16.x or later recommended)
-*   [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+- [Node.js](https://nodejs.org/en/) (v16.x or later recommended)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
 
 ### Installation
 
 1.  **Clone the repository:**
+
     ```sh
     git clone https://github.com/your-username/flights-frontend.git
     cd flights-frontend
@@ -53,6 +54,7 @@ You need to have the following software installed on your machine:
 This project requires a connection to Google Cloud services. You'll need to set up your environment variables.
 
 1.  Create a `.env.local` file in the root of the project:
+
     ```sh
     touch .env.local
     ```
@@ -66,6 +68,7 @@ This project requires a connection to Google Cloud services. You'll need to set 
     ```
 
     Your `.env.local` might look like this:
+
     ```env
     NEXT_PUBLIC_BACKEND_URL=...
     ```
@@ -91,7 +94,6 @@ Launches the test runner in interactive watch mode.
 
 Builds the app for production to the `build` folder.\
 It correctly bundles the app in production mode and optimizes the build for the best performance.
-
 
 ## 📜 License
 

@@ -1,47 +1,31 @@
-"use client";
+'use client';
 
-import { useState, useEffect, useMemo } from "react";
-import type { Flight } from "@/types";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { Calendar } from "@/components/ui/calendar";
-import { FlightCard } from "@/components/flight-card";
-import { MetricCard } from "@/components/metric-card";
-import { useToast } from "@/hooks/use-toast";
-import {
-  Plane,
-  Gauge,
-  CloudCog,
-  ArrowDownUp,
-  Calendar as CalendarIcon,
-  Filter,
-} from "lucide-react";
-import { Skeleton } from "@/components/ui/skeleton";
-import { format } from "date-fns";
-import { cn } from "@/lib/utils";
-import { Label } from "@/components/ui/label";
-import { fetchFlights } from "@/lib/api";
-import { useDebounce } from "@/hooks/use-debounce";
-import Image from "next/image";
+import { useState, useEffect, useMemo } from 'react';
+import type { Flight } from '@/types';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { Calendar } from '@/components/ui/calendar';
+import { FlightCard } from '@/components/flight-card';
+import { MetricCard } from '@/components/metric-card';
+import { useToast } from '@/hooks/use-toast';
+import { Plane, Gauge, CloudCog, ArrowDownUp, Calendar as CalendarIcon, Filter } from 'lucide-react';
+import { Skeleton } from '@/components/ui/skeleton';
+import { format } from 'date-fns';
+import { cn } from '@/lib/utils';
+import { Label } from '@/components/ui/label';
+import { fetchFlights } from '@/lib/api';
+import { useDebounce } from '@/hooks/use-debounce';
+import Image from 'next/image';
 
 export default function FlightDashboardPage() {
   const [flights, setFlights] = useState<Flight[]>([]);
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
 
-  const [airportFilter, setAirportFilter] = useState("");
-  const [aircraftFilter, setAircraftFilter] = useState("");
+  const [airportFilter, setAirportFilter] = useState('');
+  const [aircraftFilter, setAircraftFilter] = useState('');
   const [dateFilter, setDateFilter] = useState<Date | undefined>();
 
   const debouncedAirportFilter = useDebounce(airportFilter, 1000);
@@ -55,9 +39,9 @@ export default function FlightDashboardPage() {
         setFlights(data);
       } catch (err: any) {
         toast({
-          variant: "destructive",
-          title: "Error",
-          description: "Could not fetch flight data. Please try again later.",
+          variant: 'destructive',
+          title: 'Error',
+          description: 'Could not fetch flight data. Please try again later.',
         });
       } finally {
         setLoading(false);
@@ -72,19 +56,13 @@ export default function FlightDashboardPage() {
     if (debouncedAirportFilter) {
       filteredFlights = filteredFlights.filter(
         (flight) =>
-          flight.departure
-            ?.toLowerCase()
-            .includes(debouncedAirportFilter.toLowerCase()) ||
-          flight.arrival
-            ?.toLowerCase()
-            .includes(debouncedAirportFilter.toLowerCase()),
+          flight.departure?.toLowerCase().includes(debouncedAirportFilter.toLowerCase()) ||
+          flight.arrival?.toLowerCase().includes(debouncedAirportFilter.toLowerCase()),
       );
     }
     if (debouncedAircraftFilter) {
       filteredFlights = filteredFlights.filter((flight) =>
-        flight.aircraft_model
-          ?.toLowerCase()
-          .includes(debouncedAircraftFilter.toLowerCase()),
+        flight.aircraft_model?.toLowerCase().includes(debouncedAircraftFilter.toLowerCase()),
       );
     }
 
@@ -145,41 +123,35 @@ export default function FlightDashboardPage() {
       <main className="flex-1 p-4 md:p-8 space-y-8 animate-in fade-in duration-500">
         <div className="flex items-center justify-between space-y-2">
           <h1 className="text-3xl font-bold tracking-tight font-headline flex gap-3 items-center">
-            <Image
-              src="/icon.svg"
-              width={42}
-              height={42}
-              alt="Flights logo"
-            />{" "}
-            Flights Dashboard
+            <Image src="/icon.svg" width={42} height={42} alt="Flights logo" /> Flights Dashboard
           </h1>
         </div>
 
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           <MetricCard
             title="Total Flights"
-            value={loading ? "..." : metrics.totalFlights.toLocaleString()}
+            value={loading ? '...' : metrics.totalFlights.toLocaleString()}
             icon={ArrowDownUp}
             description="Total flights matching filters"
             loading={loading}
           />
           <MetricCard
             title="Avg. Distance"
-            value={loading ? "..." : `${metrics.avgDistance.toFixed(0)} km`}
+            value={loading ? '...' : `${metrics.avgDistance.toFixed(0)} km`}
             icon={Plane}
             description="Average flight distance"
             loading={loading}
           />
           <MetricCard
             title="Avg. Fuel Consumption"
-            value={loading ? "..." : `${metrics.avgFuel.toFixed(0)} kg`}
+            value={loading ? '...' : `${metrics.avgFuel.toFixed(0)} kg`}
             icon={Gauge}
             description="Average fuel used per flight"
             loading={loading}
           />
           <MetricCard
             title="Avg. CO2 Emissions"
-            value={loading ? "..." : `${metrics.avgCO2.toFixed(0)} kg`}
+            value={loading ? '...' : `${metrics.avgCO2.toFixed(0)} kg`}
             icon={CloudCog}
             description="Average CO2 emissions per flight"
             loading={loading}
@@ -223,27 +195,18 @@ export default function FlightDashboardPage() {
                       <PopoverTrigger asChild>
                         <Button
                           id="date-filter"
-                          variant={"outline"}
+                          variant={'outline'}
                           className={cn(
-                            "w-full justify-start text-left font-normal",
-                            !dateFilter && "text-muted-foreground",
+                            'w-full justify-start text-left font-normal',
+                            !dateFilter && 'text-muted-foreground',
                           )}
                         >
                           <CalendarIcon className="mr-2 h-4 w-4" />
-                          {dateFilter ? (
-                            format(dateFilter, "PPP")
-                          ) : (
-                            <span>Pick a date</span>
-                          )}
+                          {dateFilter ? format(dateFilter, 'PPP') : <span>Pick a date</span>}
                         </Button>
                       </PopoverTrigger>
                       <PopoverContent className="w-auto p-0">
-                        <Calendar
-                          mode="single"
-                          selected={dateFilter}
-                          onSelect={setDateFilter}
-                          initialFocus
-                        />
+                        <Calendar mode="single" selected={dateFilter} onSelect={setDateFilter} initialFocus />
                       </PopoverContent>
                     </Popover>
                   </div>
@@ -254,9 +217,7 @@ export default function FlightDashboardPage() {
 
           <div className="md:columns-2 xl:columns-3 gap-4 space-y-4 pt-6">
             {loading ? (
-              Array.from({ length: 9 }).map((_, i) => (
-                <Skeleton key={i} className="h-48 w-full rounded-lg" />
-              ))
+              Array.from({ length: 9 }).map((_, i) => <Skeleton key={i} className="h-48 w-full rounded-lg" />)
             ) : processedFlights.length > 0 ? (
               processedFlights.map((flight) => (
                 <div key={flight.fr24_id} className="break-inside-avoid">

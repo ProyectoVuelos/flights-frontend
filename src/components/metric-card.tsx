@@ -1,6 +1,6 @@
-import type { LucideIcon } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
+import type { LucideIcon } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
 
 interface MetricCardProps {
   title: string;
@@ -10,13 +10,7 @@ interface MetricCardProps {
   loading?: boolean;
 }
 
-export function MetricCard({
-  title,
-  value,
-  icon: Icon,
-  description,
-  loading,
-}: MetricCardProps) {
+export function MetricCard({ title, value, icon: Icon, description, loading }: MetricCardProps) {
   return (
     <Card>
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
