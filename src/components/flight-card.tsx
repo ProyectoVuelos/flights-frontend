@@ -15,9 +15,10 @@ import {
   Hash,
   RadioTower,
   ShieldQuestion,
+  CalendarClock,
 } from 'lucide-react';
 
-const DateTimeCell = ({ dateString, showTime = true }: { dateString: string; showTime?: boolean }) => {
+const DateTimeCell = ({ dateString, showTime = true }: { dateString?: string; showTime?: boolean }) => {
   const [clientDate, setClientDate] = useState<string | null>(null);
 
   useEffect(() => {
@@ -31,6 +32,8 @@ const DateTimeCell = ({ dateString, showTime = true }: { dateString: string; sho
         if (showTime) {
           options.hour = '2-digit';
           options.minute = '2-digit';
+          options.timeZone = 'UTC';
+          options.timeZoneName = 'short';
         }
         const date = new Intl.DateTimeFormat('en-US', options).format(new Date(dateString));
         setClientDate(date);
@@ -42,7 +45,7 @@ const DateTimeCell = ({ dateString, showTime = true }: { dateString: string; sho
     }
   }, [dateString, showTime]);
 
-  if (!clientDate) {
+  if (clientDate === null) {
     return null;
   }
 
@@ -140,11 +143,11 @@ export function FlightCard({ flight }: { flight: Flight }) {
               </div>
               <div className="flex flex-col items-end text-right w-1/3">
                 <div className="flex items-center gap-2">
-                  <span className="font-semibold truncate">{flight.departure ?? 'N/A'}</span>
+                  <span className="font-semibold truncate">{flight.departure_icao ?? 'N/A'}</span>
                   <PlaneTakeoff className="h-4 w-4 text-green-500 flex-shrink-0" />
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="font-semibold truncate">{flight.arrival ?? 'N/A'}</span>
+                  <span className="font-semibold truncate">{flight.arrival_icao ?? 'N/A'}</span>
                   <PlaneLanding className="h-4 w-4 text-red-500 flex-shrink-0" />
                 </div>
               </div>
@@ -156,11 +159,26 @@ export function FlightCard({ flight }: { flight: Flight }) {
               <DataRow icon={ShieldQuestion} label="FR24 ID" value={flight.fr24_id ?? 'N/A'} />
               <DataRow icon={RadioTower} label="Callsign" value={flight.callsign ?? 'N/A'} />
               <DataRow icon={Plane} label="Registration" value={flight.aircraft_reg ?? 'N/A'} />
-              <DataRow icon={Mountain} label="Distance" value={`${flight.distance_km?.toLocaleString() ?? 'N/A'} km`} />
+              <DataRow
+                icon={CalendarClock}
+                label="Departure Time (UTC)"
+                value={<DateTimeCell dateString={flight.departure_time_utc} />}
+              />
+              <DataRow
+                icon={CalendarClock}
+                label="Arrival Time (UTC)"
+                value={<DateTimeCell dateString={flight.arrival_time_utc} />}
+              />
+              <DataRow icon={Timer} label="Total Flight Time" value={formatSeconds(flight.flight_duration_s)} />
               <DataRow
                 icon={Mountain}
-                label="Circle Distance"
-                value={`${flight.circle_distance?.toLocaleString() ?? 'N/A'} km`}
+                label="Calculated Distance"
+                value={`${flight.distance_calculated_km?.toLocaleString() ?? 'N/A'} km`}
+              />
+              <DataRow
+                icon={Mountain}
+                label="Great Circle Distance"
+                value={`${flight.great_circle_distance_km?.toLocaleString() ?? 'N/A'} km`}
               />
               <DataRow
                 icon={CloudCog}
