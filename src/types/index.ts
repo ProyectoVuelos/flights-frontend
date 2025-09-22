@@ -1,3 +1,31 @@
+export interface PhaseDurations {
+  takeoff: number;
+  climb: number;
+  cruise: number;
+  descent: number;
+  landing: number;
+}
+
+export interface DetailedCalculation {
+  total_fuel_kg: number;
+  co2_total_kg: number;
+  co2_per_passenger_kg: number;
+  total_climate_impact_co2e_per_pax_kg: number;
+  efficiency_kg_pax_km: number;
+}
+
+export interface StatisticalSimulation {
+  total_fuel_kg: number;
+  co2_per_passenger_kg: number;
+  total_climate_impact_co2e_per_pax_kg: number;
+  efficiency_kg_pax_km: number;
+}
+
+export interface EmissionComparison {
+  detailed_calculation: DetailedCalculation;
+  statistical_simulation: StatisticalSimulation;
+}
+
 export interface Flight {
   fr24_id: string;
   flight?: string;
@@ -13,25 +41,8 @@ export interface Flight {
   arrival_time_utc?: string;
   flight_duration_s?: number;
 
-  duration_takeoff_s?: number;
-  duration_climb_s?: number;
-  duration_cruise_s?: number;
-  duration_descent_s?: number;
-  duration_landing_s?: number;
-
-  fuel_takeoff_kg?: number;
-  fuel_climb_kg?: number;
-  fuel_cruise_kg?: number;
-  fuel_descent_kg?: number;
-  fuel_landing_kg?: number;
-
-  co2_takeoff_kg?: number;
-  co2_climb_kg?: number;
-  co2_cruise_kg?: number;
-  co2_descent_kg?: number;
-  co2_landing_kg?: number;
-  co2_total_kg?: number;
-  co2_per_passenger_kg?: number;
+  phase_durations_s: PhaseDurations;
+  emission_comparison: EmissionComparison;
 
   flight_id?: number;
   created_at: string;
@@ -45,4 +56,11 @@ export interface FlightQueryFilters {
   flight_date?: string;
   limit: number;
   offset: number;
+}
+
+export interface SummaryMetrics {
+  total_flights: number;
+  avg_distance: number;
+  total_fuel_saving: number;
+  total_co2_saving: number;
 }

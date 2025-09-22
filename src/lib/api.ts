@@ -1,4 +1,4 @@
-import type { Flight, FlightQueryFilters } from '@/types';
+import type { Flight, FlightQueryFilters, SummaryMetrics } from '@/types';
 import { Settings } from './env-manager';
 
 export async function fetchFlights(filters: FlightQueryFilters): Promise<Flight[]> {
@@ -22,4 +22,14 @@ export async function fetchFlights(filters: FlightQueryFilters): Promise<Flight[
   }
 
   return await response.json();
+}
+
+
+export async function fetchSummary(): Promise<SummaryMetrics[]> {
+    const response = await fetch( `${Settings.backendUrl}/flights/summary`);
+    if (!response.ok) {
+        throw new Error("Failed to fetch summary data");
+    }
+    const data = await response.json();
+    return data;
 }
